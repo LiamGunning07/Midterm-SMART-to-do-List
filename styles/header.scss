@@ -1,0 +1,19 @@
+header {
+  display: flex;
+  flex-direction: row;
+  background-color: #1B4543;
+  font-size: 48px;
+  width: 100%;
+}
+
+header span {
+  margin: 10px
+}
+
+header i {
+  margin: 10px
+}
+
+#logged_in {
+  margin-left: auto;
+}
