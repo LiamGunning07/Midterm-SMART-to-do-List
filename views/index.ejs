@@ -37,65 +37,79 @@
         <form>
           <input type="text" placeholder="Add something to-do!" id="form1">
         </form>
-        <button type="submit" form="form1" value="Submit">Add</button>
+        <button type="submit" form="form1" value="Submit" id="submitButton">Add</button>
       </container>
     </main>
     <div class="tables">
       <div class="table">
-        <div>To Watch</div>
-        <div class="dropdown">
-          <button class="dropbtn">
-            <i class="fa-solid fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-
+        <container class="table-head">
+          <div>To Watch</div>
+          <div class="dropdown" id="to-watch-bttn">
+            <button class="dropbtn">
+              <i class="fa-solid fa-caret-down"></i>
+            </button>
           </div>
+        </container>
+        <div class="dropdown-content" id="to-watch-drop">
+          <container id="test-dropdown"></container>
         </div>
+
       </div>
       <div class="table">
-        <div>To Buy</div>
-        <div class="dropdown">
-          <button class="dropbtn">
-            <i class="fa-solid fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-
+        <container class="table-head">
+          <div>To Buy</div>
+          <div class="dropdown">
+            <button class="dropbtn" id="to-buy-bttn">
+              <i class="fa-solid fa-caret-down"></i>
+            </button>
           </div>
+        </container>
+        <div class="dropdown-content" id="to-buy-drop">
+          <container id="test-dropdown"></container>
         </div>
+
       </div>
       <div class="table">
-        <div>To Read</div>
-        <div class="dropdown">
-          <button class="dropbtn">
-            <i class="fa-solid fa-caret-down"></i>
-
-          </button>
-          <div class="dropdown-content">
-
+        <container class="table-head">
+          <div>To Read</div>
+          <div class="dropdown">
+            <button class="dropbtn" id="to-read-bttn">
+              <i class="fa-solid fa-caret-down"></i>
+            </button>
           </div>
+        </container>
+        <div class="dropdown-content" id="to-read-drop">
+          <container id="test-dropdown"></container>
         </div>
+
       </div>
       <div class="table">
-        <div>To Eat</div>
-        <div class="dropdown">
-          <button class="dropbtn">
-            <i class="fa-solid fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-
+        <container class="table-head">
+          <div>To Eat</div>
+          <div class="dropdown">
+            <button class="dropbtn" id="to-eat-bttn">
+              <i class="fa-solid fa-caret-down"></i>
+            </button>
           </div>
+        </container>
+        <div class="dropdown-content" id="to-eat-drop">
+          <container id="test-dropdown"></container>
         </div>
+
       </div>
       <div class="table">
-        <div>Miscellaneous</div>
-        <div class="dropdown">
-          <button class="dropbtn">
-            <i class="fa-solid fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-
+        <container class="table-head">
+          <div>Miscellaneous</div>
+          <div class="dropdown">
+            <button class="dropbtn" id="misc-bttn">
+              <i class="fa-solid fa-caret-down"></i>
+            </button>
           </div>
+        </container>
+        <div class="dropdown-content" id="misc-drop">
+          <container id="test-dropdown"></container>
         </div>
+
       </div>
     </div>
   </container>
