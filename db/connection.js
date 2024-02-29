@@ -9,6 +9,33 @@ const dbParams = {
   database: process.env.DB_NAME
 };
 
+const getAllForCategory = function(category) {
+  if (category === null) {
+    category === misc;
+  }
+  return db
+    .query(`SELECT * FROM to_do_items WHERE category = $1`, [category])
+    .then((result) => {
+      return result.rows
+    })
+    .catch((err) => {
+      console.log(err.message)
+    });
+}
+
+const addToDo = function(values) {
+  return db
+    .query(`INSERT INTO to_do_items (title, category)
+            VALUES ($1, $2)
+            RETURNING *`, [values.title, values.category])
+    .then((result) => {
+      return result;
+    })
+    .catch((err) => {
+      console.log(err.message)
+    })
+}
+
 const db = new Pool(dbParams);
 db.connect();
 module.exports = db;
