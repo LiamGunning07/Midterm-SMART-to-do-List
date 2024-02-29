@@ -17,9 +17,8 @@ div.table {
   margin: 5px;
   font-size: 38px;
   width: 100%;
-  padding: 5px;
+  padding: 10px;
   margin: 10px;
-  padding-left: 10px;
 }
 
 div div button {
@@ -33,8 +32,9 @@ div.table:hover {
 }
 
 .dropdown-content {
-  color: #F0BE6F;
+  background-color: #B3D0C6;
   width: 100%;
   height: 100px;
   display: none;
+  margin-top: 10px;
 }
