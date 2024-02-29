@@ -19,10 +19,27 @@ $(document).ready(function() {
     });
   })
 
-  // event listener for dropdown
+  // event listeners for dropdowns
   $("#to-watch-bttn").click(function() {
     $("#to-watch-drop").slideToggle();
   });
+
+  $("#to-buy-bttn").click(function() {
+    $("#to-buy-drop").slideToggle();
+  });
+
+  $("#to-read-bttn").click(function() {
+    $("#to-read-drop").slideToggle();
+  });
+
+  $("#to-eat-bttn").click(function() {
+    $("#to-eat-drop").slideToggle();
+  });
+
+  $("#misc-bttn").click(function() {
+    $("#misc-drop").slideToggle();
+  });
+
 
 
 });
