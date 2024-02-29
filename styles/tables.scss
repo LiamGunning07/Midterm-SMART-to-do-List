@@ -1,17 +1,28 @@
+div.tables {
+  display: flex;
+  flex-wrap: wrap;
+}
 
-
-div div {
+div.table {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   background-color: #1B4543;
   margin: 5px;
   font-size: 38px;
   width: 100%;
+  padding: 5px;
+  margin: 10px;
+  padding-left: 10px;
 }
 
 div div button {
   background-color: #1B4543;
   color: #F0BE6F;
   margin-left: auto;
+}
+
+div.table:hover {
+  box-shadow: 5px 5px #1b45436e;
 }

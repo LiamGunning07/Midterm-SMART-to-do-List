@@ -5,8 +5,8 @@ require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
-const openai = require('openai'); // OpenAI Setup
-openai.apiKey = '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'; // OpenAI KEY
+// const openai = require('openai'); // OpenAI Setup
+// openai.apiKey = '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'; // OpenAI KEY
 const PORT = process.env.PORT || 8080;
 const app = express();
 
