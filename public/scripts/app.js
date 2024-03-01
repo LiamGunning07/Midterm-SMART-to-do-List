@@ -45,5 +45,16 @@ $(document).ready(function() {
   });
 
 
+  $("#to-watch-bttn").click(function() {
+    $("#to-watch-drop").empty(); // Clear previous content
+    $.get('/items/to-watch', function(data) {
+      data.forEach(item => {
+        $("#to-watch-drop").append(`<p>${item.title}</p>`); // Assuming 'title' is a field in your database table
+      });
+    }).fail(function(xhr, status, error) {
+      console.log("Error fetching data:", error);
+    });
+  });
+
 
 });
