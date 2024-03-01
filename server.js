@@ -5,10 +5,12 @@ require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
-const db = require('./database');
+// const db = require('./database');
 const dbHost = process.env.DB_HOST;
 const dbUser = process.env.DB_USER;
-const dbPassword = process.env.DB_PASSWORD;
+const dbPassword = process.env.DB_PASS;
+
+console.log(dbHost, dbUser, dbPassword);
 
 // const openai = require('openai'); // OpenAI Setup
 // openai.apiKey = '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'; // OpenAI KEY
@@ -48,7 +50,7 @@ app.use('/users', usersRoutes);
 app.use('/', itemRoutes);
 app.use('/items/:category', itemRoutes);
 
-
+console.log()
 
 // Note: mount other resources here, using the same pattern above
 

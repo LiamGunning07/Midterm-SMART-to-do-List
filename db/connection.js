@@ -1,24 +1,28 @@
 // PG database client/connection setup
 const { Pool } = require('pg');
 
-const dbParams = {
+const client = new Pool ({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME
-};
+});
+
+client.connect();
 
 const getAllForCategory = function(category) {
+  console.log(category, "category should be here");
   if (category === null) {
-    category === misc;
+    category = 'misc';
   }
-  return db
+  return client
     .query(`SELECT * FROM to_do_items WHERE category = $1`, [category])
     .then((result) => {
-      return result.rows
+      return result.rows;
     })
     .catch((err) => {
+      console.log("This is error")
       console.log(err.message)
     });
 }
@@ -36,20 +40,4 @@ const addToDo = function(values) {
     })
 }
 
-const db = new Pool(dbParams);
-db.connect();
-module.exports = db;
-// functions that use querys to leverage db info
-// export all query functions
-// in routs require db/connection.js
-
-
-//router.get("/properties", (req, res) => {
-//   database
-//     .getAllProperties(req.query, 20)
-//     .then((properties) => res.send({ properties }))
-//     .catch((e) => {
-//       console.error(e);
-//       res.send(e);
-//     });
-// });
+module.exports = { getAllForCategory, addToDo };

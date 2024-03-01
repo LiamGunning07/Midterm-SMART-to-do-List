@@ -44,10 +44,11 @@ $(document).ready(function() {
     $("#misc-drop").slideToggle();
   });
 
-
+  // Load tables on button click for dropdown tables
   $("#to-watch-bttn").click(function() {
     $("#to-watch-drop").empty(); // Clear previous content
-    $.get('/items/to-watch', function(data) {
+    console.log("Clicked!");
+    $.get('/items/to_watch', function(data) {
       data.forEach(item => {
         $("#to-watch-drop").append(`<p>${item.title}</p>`); // Assuming 'title' is a field in your database table
       });
@@ -56,5 +57,52 @@ $(document).ready(function() {
     });
   });
 
+  $("#to-read-bttn").click(function() {
+    $("#to-read-drop").empty(); // Clear previous content
+    console.log("Clicked!");
+    $.get('/items/to_read', function(data) {
+      data.forEach(item => {
+        $("#to-read-drop").append(`<p>${item.title}</p>`); // Assuming 'title' is a field in your database table
+      });
+    }).fail(function(xhr, status, error) {
+      console.log("Error fetching data:", error);
+    });
+  });
+
+  $("#to-eat-bttn").click(function() {
+    $("#to-eat-drop").empty(); // Clear previous content
+    console.log("Clicked!");
+    $.get('/items/to_eat', function(data) {
+      data.forEach(item => {
+        $("#to-eat-drop").append(`<p>${item.title}</p>`); // Assuming 'title' is a field in your database table
+      });
+    }).fail(function(xhr, status, error) {
+      console.log("Error fetching data:", error);
+    });
+  });
+
+  $("#to-buy-bttn").click(function() {
+    $("#to-buy-drop").empty(); // Clear previous content
+    console.log("Clicked!");
+    $.get('/items/to_buy', function(data) {
+      data.forEach(item => {
+        $("#to-buy-drop").append(`<p>${item.title}</p>`); // Assuming 'title' is a field in your database table
+      });
+    }).fail(function(xhr, status, error) {
+      console.log("Error fetching data:", error);
+    });
+  });
+
+  $("#misc-bttn").click(function() {
+    $("#misc-drop").empty(); // Clear previous content
+    console.log("Clicked!");
+    $.get('/items/misc', function(data) {
+      data.forEach(item => {
+        $("#misc-drop").append(`<p>${item.title}</p>`); // Assuming 'title' is a field in your database table
+      });
+    }).fail(function(xhr, status, error) {
+      console.log("Error fetching data:", error);
+    });
+  });
 
 });
