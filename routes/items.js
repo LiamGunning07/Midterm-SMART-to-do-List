@@ -3,21 +3,23 @@ const router  = express.Router();
 const db = require('../db/connection.js');
 
 
-
-router.post('/',(req, res) => {
+// posting new to-do item
+router.post('/item', async (req, res) => {
+  console.log("In post route");
+  console.log("req.data =", req.data);
+  console.log("req.body =", req.body);
+  console.log("req.body.data =", req.body.data);
+  console.log("req.body.userInput =", req.body.userInput);
   const userInput = req.body.userInput
   res.json({ success: true, message: 'Input received', data: userInput });
 });
 
+// Loads tables from db
 router.get('/items/:category', async (req, res) => {
-  console.log("in items.js");
-  console.log("db =", db)
-  console.log("req =", req.params.category)
   const category = req.params.category;
   try {
     const items = await db.getAllForCategory(category);
-    console.log("items =", items)
-    return res.json(items); // Assuming you want to render JSON data, adjust as needed
+    return res.json(items);
 
   } catch (err) {
     res.status(500).json({ error: err.message });
