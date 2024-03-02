@@ -47,7 +47,7 @@ const itemRoutes = require('./routes/items');
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
-app.use('/item', itemRoutes);
+app.use('/items', itemRoutes);
 app.use('/items/:category', itemRoutes);
 
 

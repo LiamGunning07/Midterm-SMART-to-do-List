@@ -10,13 +10,13 @@ $(document).ready(function() {
     console.log("serializedItem =", serializedItem)
     $.ajax({
       method: "POST",
-      url: "/item",
+      url: "/items",
       processData: false,
       data: serializedItem,
       success: function(result) {
         console.log("Item was posted successfully", result);
         // loadItems();
-        $(`#misc-drop`).append(`<p>${result}</p>`)
+        $(`#misc-drop`).append(`<p>${result}</p>`) // delete this once we get INSERT working
 
       },
       error: function(err) {

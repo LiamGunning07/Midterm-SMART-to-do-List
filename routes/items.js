@@ -1,10 +1,10 @@
 const express = require('express');
 const router  = express.Router();
-const db = require('../db/connection.js');
+const db      = require('../db/connection.js');
 
 
-// posting new to-do item
-router.post('/item', async (req, res) => {
+// posting new to-do item, this is where we will implement api and pass into data
+router.post('/items', async (req, res) => {
   console.log("In post route");
   console.log("req.data =", req.data);
   console.log("req.body =", req.body);

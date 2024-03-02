@@ -27,7 +27,7 @@ const getAllForCategory = function(category) {
     });
 }
 
-const addToDo = function(values) {
+const addToDoItem = function(values) {
   return db
     .query(`INSERT INTO to_do_items (title, category)
             VALUES ($1, $2)
@@ -40,4 +40,4 @@ const addToDo = function(values) {
     })
 }
 
-module.exports = { getAllForCategory, addToDo };
+module.exports = { getAllForCategory, addToDoItem };
