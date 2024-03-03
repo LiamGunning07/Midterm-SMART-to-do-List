@@ -1,15 +1,26 @@
 const express = require('express');
 const router  = express.Router();
 const db      = require('../db/connection.js');
+const request = require('request');
 
+const OpenAI  = require("openai");
 
-// posting new to-do item, this is where we will implement api and pass into data
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+});
+
 router.post('/add', async (req, res) => {
   const userId = 1;
   const newItem = {};
   newItem.title = req.body.userInput;
   newItem.user_id = userId;
-  newItem.category = 'to_eat'
+  const response = await openai.chat.completions.create({
+    model: 'gpt-3.5-turbo',
+    messages: [{ role: 'user', content: `Please give a 1 word answer that best describes this word: ${req.body.userInput}. Choose your 1 word from the following 5 words : to_eat, to_watch, to_buy, to_watch, misc. If you think it is a movie or show, please respond with to_watch, if you think it is a book please resond with to_read, if you think it is a food, please respond with to_eat, if you think it is a product, please resond with to_buy, if you are not sure about the item, please respond with misc.`}],
+    max_tokens: 10,
+  })
+  console.log("openAi's messgae: ", response.choices[0].message.content)
+  newItem.category = response.choices[0].message.content
   db
     .addToDoItem(newItem)
     .then((item) => {
@@ -20,6 +31,8 @@ router.post('/add', async (req, res) => {
       res.send(err);
     });
 });
+
+
 
 // Loads tables from db
 router.get('/:category', async (req, res) => {

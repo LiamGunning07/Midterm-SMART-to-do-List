@@ -19,6 +19,7 @@ The following steps are only for _one_ of the group members to perform.
   - username: `labber` 
   - password: `labber` 
   - database: `midterm`
+  - openai_api_key: Please get key from OpenAi
 3. Install dependencies: `npm i`
 4. Fix to binaries for sass: `npm rebuild node-sass`
 5. Reset database: `npm run db:reset`
@@ -26,6 +27,7 @@ The following steps are only for _one_ of the group members to perform.
 7. Run the server: `npm run local`
   - Note: nodemon is used, so you should not have to restart your server
 8. Visit `http://localhost:8080/`
+9. Must use node verion 14.0 and above
 
 ## Warnings & Tips
 

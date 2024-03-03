@@ -28,12 +28,15 @@ const getAllForCategory = function(category) {
 }
 
 const addToDoItem = function(values) {
+  let category = values.category;
+  if (!category) {
+    category = 'misc';
+  }
   return client
     .query(`INSERT INTO to_do_items (user_id, title, category)
             VALUES ($1, $2, $3)
-            RETURNING *`, [values.user_id, values.title, values.category])
+            RETURNING *`, [values.user_id, values.title, category])
     .then((result) => {
-      console.log(result);
       return result;
     })
     .catch((err) => {
