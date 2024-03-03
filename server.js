@@ -47,10 +47,8 @@ const itemRoutes = require('./routes/items');
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
-app.use('/', itemRoutes);
-app.use('/items/:category', itemRoutes);
+app.use('/items', itemRoutes);
 
-console.log()
 
 // Note: mount other resources here, using the same pattern above
 

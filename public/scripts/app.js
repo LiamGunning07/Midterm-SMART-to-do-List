@@ -7,14 +7,16 @@ $(document).ready(function() {
     event.preventDefault();
     console.log("event is fired")
     const serializedItem = $("#form1").serialize();
+    console.log("serializedItem =", serializedItem)
     $.ajax({
       method: "POST",
-      url: "/",
+      url: "/items/add",
+      processData: false,
       data: serializedItem,
       success: function(result) {
         console.log("Item was posted successfully", result);
         // loadItems();
-        $(`#misc-drop`).append(`<p>${result}</p>`)
+        $(`#misc-drop`).append(`<p>${result}</p>`) // delete this once we get INSERT working
 
       },
       error: function(err) {
@@ -50,7 +52,7 @@ $(document).ready(function() {
     console.log("Clicked!");
     $.get('/items/to_watch', function(data) {
       data.forEach(item => {
-        $("#to-watch-drop").append(`<p>${item.title}</p>`); // Assuming 'title' is a field in your database table
+        $("#to-watch-drop").append(`<p>${item.title}</p>`);
       });
     }).fail(function(xhr, status, error) {
       console.log("Error fetching data:", error);
@@ -62,7 +64,7 @@ $(document).ready(function() {
     console.log("Clicked!");
     $.get('/items/to_read', function(data) {
       data.forEach(item => {
-        $("#to-read-drop").append(`<p>${item.title}</p>`); // Assuming 'title' is a field in your database table
+        $("#to-read-drop").append(`<p>${item.title}</p>`);
       });
     }).fail(function(xhr, status, error) {
       console.log("Error fetching data:", error);
@@ -74,7 +76,7 @@ $(document).ready(function() {
     console.log("Clicked!");
     $.get('/items/to_eat', function(data) {
       data.forEach(item => {
-        $("#to-eat-drop").append(`<p>${item.title}</p>`); // Assuming 'title' is a field in your database table
+        $("#to-eat-drop").append(`<p>${item.title}</p>`);
       });
     }).fail(function(xhr, status, error) {
       console.log("Error fetching data:", error);
@@ -86,19 +88,20 @@ $(document).ready(function() {
     console.log("Clicked!");
     $.get('/items/to_buy', function(data) {
       data.forEach(item => {
-        $("#to-buy-drop").append(`<p>${item.title}</p>`); // Assuming 'title' is a field in your database table
+        $("#to-buy-drop").append(`<p>${item.title}</p>`);
       });
     }).fail(function(xhr, status, error) {
       console.log("Error fetching data:", error);
     });
   });
 
+
   $("#misc-bttn").click(function() {
     $("#misc-drop").empty(); // Clear previous content
     console.log("Clicked!");
     $.get('/items/misc', function(data) {
       data.forEach(item => {
-        $("#misc-drop").append(`<p>${item.title}</p>`); // Assuming 'title' is a field in your database table
+        $("#misc-drop").append(`<p>${item.title}</p>`);
       });
     }).fail(function(xhr, status, error) {
       console.log("Error fetching data:", error);

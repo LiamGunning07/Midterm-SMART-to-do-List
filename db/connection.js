@@ -27,17 +27,19 @@ const getAllForCategory = function(category) {
     });
 }
 
-const addToDo = function(values) {
-  return db
-    .query(`INSERT INTO to_do_items (title, category)
-            VALUES ($1, $2)
-            RETURNING *`, [values.title, values.category])
+const addToDoItem = function(values) {
+  return client
+    .query(`INSERT INTO to_do_items (user_id, title, category)
+            VALUES ($1, $2, $3)
+            RETURNING *`, [values.user_id, values.title, values.category])
     .then((result) => {
+      console.log(result);
       return result;
     })
     .catch((err) => {
-      console.log(err.message)
+      console.log(err.message);
+      throw err; // Re-throw the error to propagate it
     })
 }
 
-module.exports = { getAllForCategory, addToDo };
+module.exports = { getAllForCategory, addToDoItem };
