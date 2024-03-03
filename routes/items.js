@@ -4,18 +4,25 @@ const db      = require('../db/connection.js');
 
 
 // posting new to-do item, this is where we will implement api and pass into data
-router.post('/items', async (req, res) => {
-  console.log("In post route");
-  console.log("req.data =", req.data);
-  console.log("req.body =", req.body);
-  console.log("req.body.data =", req.body.data);
-  console.log("req.body.userInput =", req.body.userInput);
-  const userInput = req.body.userInput
-  res.json({ success: true, message: 'Input received', data: userInput });
+router.post('/add', async (req, res) => {
+  const userId = 1;
+  const newItem = {};
+  newItem.title = req.body.userInput;
+  newItem.user_id = userId;
+  newItem.category = 'to_eat'
+  db
+    .addToDoItem(newItem)
+    .then((item) => {
+      res.send(item);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.send(err);
+    });
 });
 
 // Loads tables from db
-router.get('/items/:category', async (req, res) => {
+router.get('/:category', async (req, res) => {
   const category = req.params.category;
   try {
     const items = await db.getAllForCategory(category);

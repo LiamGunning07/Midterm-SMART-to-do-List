@@ -10,7 +10,7 @@ $(document).ready(function() {
     console.log("serializedItem =", serializedItem)
     $.ajax({
       method: "POST",
-      url: "/items",
+      url: "/items/add",
       processData: false,
       data: serializedItem,
       success: function(result) {

@@ -48,7 +48,6 @@ app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/items', itemRoutes);
-app.use('/items/:category', itemRoutes);
 
 
 // Note: mount other resources here, using the same pattern above
