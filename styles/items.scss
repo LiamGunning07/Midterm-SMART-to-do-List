@@ -1,0 +1,41 @@
+
+article {
+  display: flex;
+  flex-direction: row; /* Ensure buttons appear next to the content */
+  align-items: center;
+  justify-content: space-between; /* Push buttons to the right */
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 5px 5px #1b45436e;
+  height: 5vh;
+}
+
+article div {
+  display: flex;
+}
+
+.delete-btn,
+.edit-btn {
+  margin-left: 10px; /* Add some spacing between buttons if needed */
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+.custom-checkbox {
+  width: 36px;
+  height: 36px;
+  border: 2px solid #333;
+  border-radius: 4px;
+  outline: none;
+  margin: 10px; /* Adjust spacing between checkbox and label */
+  cursor: pointer;
+}
+
+.checkbox-label {
+  font-size: 36px;
+  cursor: pointer;
+}
