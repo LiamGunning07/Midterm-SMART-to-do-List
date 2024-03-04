@@ -43,13 +43,28 @@ $(document).ready(function() {
     $("#misc-drop").slideToggle();
   });
 
+  createItemElement = function(item) { // Helper Function for Each Item Element
+    return `
+    <article>
+      <p> ${item.title} </p>
+      <div>
+      <button type ="submit" class="delete-btn">Delete</button>
+      <button type ="submit" class="edit-btn">Edit</button>
+        <div class="checkbox-container">
+          <input type="checkbox" id="myCheckbox" class="custom-checkbox">
+          <label for="myCheckbox" class="checkbox-label">Completed</label>
+        </div>
+      </div>
+    </article>`;
+  };
+
   // Load tables on button click for dropdown tables
   $("#to-watch-bttn").click(function() {
     $("#to-watch-drop").empty(); // Clear previous content
     console.log("Clicked!");
     $.get('/items/to_watch', function(data) {
       data.forEach(item => {
-        $("#to-watch-drop").append(`<p>${item.title}</p>`);
+        $("#to-watch-drop").append(createItemElement(item));
       });
     }).fail(function(xhr, status, error) {
       console.log("Error fetching data:", error);
@@ -61,7 +76,7 @@ $(document).ready(function() {
     console.log("Clicked!");
     $.get('/items/to_read', function(data) {
       data.forEach(item => {
-        $("#to-read-drop").append(`<p>${item.title}</p>`);
+        $("#to-read-drop").append(createItemElement(item));
       });
     }).fail(function(xhr, status, error) {
       console.log("Error fetching data:", error);
@@ -73,7 +88,7 @@ $(document).ready(function() {
     console.log("Clicked!");
     $.get('/items/to_eat', function(data) {
       data.forEach(item => {
-        $("#to-eat-drop").append(`<p>${item.title}</p>`);
+        $("#to-eat-drop").append(createItemElement(item));
       });
     }).fail(function(xhr, status, error) {
       console.log("Error fetching data:", error);
@@ -85,7 +100,7 @@ $(document).ready(function() {
     console.log("Clicked!");
     $.get('/items/to_buy', function(data) {
       data.forEach(item => {
-        $("#to-buy-drop").append(`<p>${item.title}</p>`);
+        $("#to-buy-drop").append(createItemElement(item));
       });
     }).fail(function(xhr, status, error) {
       console.log("Error fetching data:", error);
@@ -98,11 +113,13 @@ $(document).ready(function() {
     console.log("Clicked!");
     $.get('/items/misc', function(data) {
       data.forEach(item => {
-        $("#misc-drop").append(`<p>${item.title}</p>`);
+        $("#misc-drop").append(createItemElement(item));
       });
     }).fail(function(xhr, status, error) {
       console.log("Error fetching data:", error);
     });
   });
+
+
 
 });
