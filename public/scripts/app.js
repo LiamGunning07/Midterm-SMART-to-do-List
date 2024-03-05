@@ -80,12 +80,43 @@ $(document).ready(function() {
       type: 'POST',
       data: { id: itemId, category: itemCat },
       success: function(res) {
-        const category = res.category;
-        console.log("category: ", category);
-        $(`#${category}-drop`).empty();
-        $.get(`/items/${category}`, function(data) {
+        console.log("This is where we should reload tables");
+        $(`#to_watch-drop`).empty();
+        $.get(`/items/to_watch`, function(data) {
           data.forEach(item => {
-            $(`#${category}-drop`).append(createItemElement(item));
+            $(`#to_watch-drop`).append(createItemElement(item));
+          });
+        }).fail(function(xhr, status, error) {
+          console.log("Error fetching data:", error);
+        });
+        $(`#to_eat-drop`).empty();
+        $.get(`/items/to_eat`, function(data) {
+          data.forEach(item => {
+            $(`#to_eat-drop`).append(createItemElement(item));
+          });
+        }).fail(function(xhr, status, error) {
+          console.log("Error fetching data:", error);
+        });
+        $(`#to_buy-drop`).empty();
+        $.get(`/items/to_buy`, function(data) {
+          data.forEach(item => {
+            $(`#to_buy-drop`).append(createItemElement(item));
+          });
+        }).fail(function(xhr, status, error) {
+          console.log("Error fetching data:", error);
+        });
+        $(`#to_read-drop`).empty();
+        $.get(`/items/to_read`, function(data) {
+          data.forEach(item => {
+            $(`#to_read-drop`).append(createItemElement(item));
+          });
+        }).fail(function(xhr, status, error) {
+          console.log("Error fetching data:", error);
+        });
+        $(`#misc-drop`).empty();
+        $.get(`/items/misc`, function(data) {
+          data.forEach(item => {
+            $(`#to_misc`).append(createItemElement(item));
           });
         }).fail(function(xhr, status, error) {
           console.log("Error fetching data:", error);

@@ -62,7 +62,6 @@ router.post('/delete', async (req, res) => {
   try {
     const category = await db.getCategoryForId(id);
     await db.deleteItem(id);
-    res.send(category);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
