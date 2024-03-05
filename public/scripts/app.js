@@ -17,8 +17,11 @@ $(document).ready(function() {
         console.log("Item was posted successfully", result);
         $('#submitForm')[0].reset();
         let category = result.category;
-        console.log(`#${category}-drop`);
-        $(`#${category}-drop`).slideToggle();
+        if (category !== 'to_watch' && category !== 'to_eat' && category !== 'to_read' && category !== 'to_buy') {
+          console.log("category changed to misc")
+          category = 'misc';
+        }
+        $(`#${category}-drop`).slideDown();
       },
       error: function(err) {
         console.log("There was an error ",err);
