@@ -1,10 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const db      = require('../db/connection.js');
-const request = require('request');
-
 const OpenAI  = require("openai");
-
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
@@ -24,7 +21,11 @@ router.post('/add', async (req, res) => {
   db
     .addToDoItem(newItem)
     .then((item) => {
-      res.send(item);
+      const responseObj = {
+        category: newItem.category,
+        item: item
+      }
+      res.send(responseObj);
     })
     .catch((err) => {
       console.error(err);

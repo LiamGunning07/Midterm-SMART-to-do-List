@@ -16,6 +16,9 @@ $(document).ready(function() {
       success: function(result) {
         console.log("Item was posted successfully", result);
         $('#submitForm')[0].reset();
+        let category = result.category;
+        console.log(`#${category}-drop`);
+        $(`#${category}-drop`).slideToggle();
       },
       error: function(err) {
         console.log("There was an error ",err);
@@ -24,20 +27,20 @@ $(document).ready(function() {
   })
 
   // event listeners for dropdowns
-  $("#to-watch-bttn").click(function() {
-    $("#to-watch-drop").slideToggle();
+  $("#to_watch-bttn").click(function() {
+    $("#to_watch-drop").slideToggle();
   });
 
-  $("#to-buy-bttn").click(function() {
-    $("#to-buy-drop").slideToggle();
+  $("#to_buy-bttn").click(function() {
+    $("#to_buy-drop").slideToggle();
   });
 
-  $("#to-read-bttn").click(function() {
-    $("#to-read-drop").slideToggle();
+  $("#to_read-bttn").click(function() {
+    $("#to_read-drop").slideToggle();
   });
 
-  $("#to-eat-bttn").click(function() {
-    $("#to-eat-drop").slideToggle();
+  $("#to_eat-bttn").click(function() {
+    $("#to_eat-drop").slideToggle();
   });
 
   $("#misc-bttn").click(function() {
@@ -60,48 +63,48 @@ $(document).ready(function() {
   };
 
   // Load tables on button click for dropdown tables
-  $("#to-watch-bttn").click(function() {
-    $("#to-watch-drop").empty(); // Clear previous content
+  $("#to_watch-bttn").click(function() {
+    $("#to_watch-drop").empty(); // Clear previous content
     console.log("Clicked!");
     $.get('/items/to_watch', function(data) {
       data.forEach(item => {
-        $("#to-watch-drop").append(createItemElement(item));
+        $("#to_watch-drop").append(createItemElement(item));
       });
     }).fail(function(xhr, status, error) {
       console.log("Error fetching data:", error);
     });
   });
 
-  $("#to-read-bttn").click(function() {
-    $("#to-read-drop").empty(); // Clear previous content
+  $("#to_read-bttn").click(function() {
+    $("#to_read-drop").empty(); // Clear previous content
     console.log("Clicked!");
     $.get('/items/to_read', function(data) {
       data.forEach(item => {
-        $("#to-read-drop").append(createItemElement(item));
+        $("#to_read-drop").append(createItemElement(item));
       });
     }).fail(function(xhr, status, error) {
       console.log("Error fetching data:", error);
     });
   });
 
-  $("#to-eat-bttn").click(function() {
-    $("#to-eat-drop").empty(); // Clear previous content
+  $("#to_eat-bttn").click(function() {
+    $("#to_eat-drop").empty(); // Clear previous content
     console.log("Clicked!");
     $.get('/items/to_eat', function(data) {
       data.forEach(item => {
-        $("#to-eat-drop").append(createItemElement(item));
+        $("#to_eat-drop").append(createItemElement(item));
       });
     }).fail(function(xhr, status, error) {
       console.log("Error fetching data:", error);
     });
   });
 
-  $("#to-buy-bttn").click(function() {
-    $("#to-buy-drop").empty(); // Clear previous content
+  $("#to_buy-bttn").click(function() {
+    $("#to_buy-drop").empty(); // Clear previous content
     console.log("Clicked!");
     $.get('/items/to_buy', function(data) {
       data.forEach(item => {
-        $("#to-buy-drop").append(createItemElement(item));
+        $("#to_buy-drop").append(createItemElement(item));
       });
     }).fail(function(xhr, status, error) {
       console.log("Error fetching data:", error);
