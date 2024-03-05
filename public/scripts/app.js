@@ -49,7 +49,14 @@ $(document).ready(function() {
       <p id="item${item.id}"> ${item.title} </p>
       <div>
       <button type ="button" class="delete-btn">Delete</button>
-      <button type ="button" class="edit-btn">Edit</button>
+      <div class="dropdown-cat">
+        <button class="edit-btn">Change Category</button>
+        <div class="dropdown-categorys">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+      </div>
         <div class="checkbox-container">
           <input type="checkbox" id="myCheckbox" class="custom-checkbox" ${completed}>
           <label for="myCheckbox" class="checkbox-label">Completed</label>
