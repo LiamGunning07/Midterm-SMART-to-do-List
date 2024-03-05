@@ -39,10 +39,10 @@ $(document).ready(function() {
     });
   })
 
-  createItemElement = function(item) { // Helper Function for Each Item Element ID SHOULD BE PK FROM TABLE, need to implement
+  createItemElement = function(item) { // Helper Function for Each Item Element
     return `
     <article>
-      <p id="item.${item.title}"> ${item.title} </p>
+      <p id="item${item.id}"> ${item.title} </p>
       <div>
       <button type ="button" class="delete-btn">Delete</button>
       <button type ="button" class="edit-btn">Edit</button>
@@ -53,6 +53,33 @@ $(document).ready(function() {
       </div>
     </article>`;
   };
+
+  // Delete button listener
+  $(document).on('click', '.delete-btn', function() {
+    // extracy current itemId
+    const itemId = $(this).closest('article').find('p').attr('id').replace('item', '');
+    console.log("clicked delete");
+    $.ajax({
+      url: 'items/delete',
+      type: 'POST',
+      data: { id: itemId },
+      success: function(res) {
+        const category = res.category;
+        console.log("category: ", category);
+        $(`#${category}-drop`).empty();
+        $.get(`/items/${category}`, function(data) {
+          data.forEach(item => {
+            $(`#${category}-drop`).append(createItemElement(item));
+          });
+        }).fail(function(xhr, status, error) {
+          console.log("Error fetching data:", error);
+        });
+      },
+      error: function(xhr, status, error) {
+        console.log("Error message: ", error)
+      }
+    })
+  })
 
   // Load tables on button click for dropdown tables
   $("#to_watch-bttn").click(function() {

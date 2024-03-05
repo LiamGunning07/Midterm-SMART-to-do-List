@@ -33,6 +33,17 @@ router.post('/add', async (req, res) => {
     });
 });
 
+router.post('/delete', async (req, res) => {
+  const id = req.body.id;
+  console.log(id);
+  try {
+    const category = await db.getCategoryForId(id);
+    await db.deleteItem(id);
+    res.send(category);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 
 // Loads tables from db

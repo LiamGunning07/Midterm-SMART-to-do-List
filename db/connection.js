@@ -43,4 +43,25 @@ const addToDoItem = function(values) {
     })
 }
 
-module.exports = { getAllForCategory, addToDoItem };
+const getCategoryForId = function(itemId) {
+  return client
+    .query(`SELECT category FROM to_do_items WHERE id = ${itemId}`)
+    .then((result) => {
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+      throw err; // Re-throw the error to propagate it
+    })
+}
+
+const deleteItem = function(itemId) {
+  return client
+    .query(`DELETE FROM to_do_items WHERE id = ${itemId}`)
+    .catch((err) => {
+      console.log(err.message);
+      throw err; // Re-throw the error to propagate it
+    })
+}
+
+module.exports = { getAllForCategory, addToDoItem, deleteItem, getCategoryForId };
