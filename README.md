@@ -27,7 +27,6 @@ The following steps are only for _one_ of the group members to perform.
 7. Run the server: `npm run local`
   - Note: nodemon is used, so you should not have to restart your server
 8. Visit `http://localhost:8080/`
-9. Must use node verion 14.0 and above
 
 ## Warnings & Tips
 
@@ -41,6 +40,6 @@ The following steps are only for _one_ of the group members to perform.
 
 ## Dependencies
 
-- Node 10.x or above
+- Node 14.x or above
 - NPM 5.x or above
 - PG 6.x

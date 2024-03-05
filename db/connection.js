@@ -12,10 +12,6 @@ const client = new Pool ({
 client.connect();
 
 const getAllForCategory = function(category) {
-  console.log(category, "category should be here");
-  if (category === null) {
-    category = 'misc';
-  }
   return client
     .query(`SELECT * FROM to_do_items WHERE category = $1`, [category])
     .then((result) => {
@@ -29,7 +25,7 @@ const getAllForCategory = function(category) {
 
 const addToDoItem = function(values) {
   let category = values.category;
-  if (!category) {
+  if (category !== 'to_watch' || 'to_eat' || 'to_read' || 'to_buy') {
     category = 'misc';
   }
   return client
