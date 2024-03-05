@@ -75,4 +75,13 @@ const completeItem = function (itemId) {
   })
 };
 
-module.exports = { getAllForCategory, addToDoItem, deleteItem, getCategoryForId, completeItem };
+const changeCategory = function (values) {
+  return client
+  .query(`UPDATE to_do_items SET category = '${values.category}' WHERE id = ${values.id} `)
+  .catch((err) => {
+    console.log(err.message);
+    throw err; // Re-throw the error to propagate it
+  })
+};
+
+module.exports = { getAllForCategory, addToDoItem, deleteItem, getCategoryForId, completeItem, changeCategory };

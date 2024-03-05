@@ -33,6 +33,19 @@ router.post('/add', async (req, res) => {
     });
 });
 
+router.post('/newCategory', async (req, res) => {
+  console.log("Selected New Category");
+  const id = req.body.id;
+  const cat = req.body.category
+  const values = { id: id, category: cat };
+  try {
+    await db.changeCategory(values);
+    res.send(cat);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+})
+
 router.post('/completed', async (req, res) => {
   console.log("In post route");
   const id = req.body.id;

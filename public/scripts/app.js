@@ -52,9 +52,11 @@ $(document).ready(function() {
       <div class="dropdown-cat">
         <button class="edit-btn">Change Category</button>
         <div class="dropdown-categorys">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+          <a href="#" class="drop-cat-btn" id='dd-to_watch'>To Watch</a>
+          <a href="#" class="drop-cat-btn" id='dd-to_buy'>To Buy</a>
+          <a href="#" class="drop-cat-btn" id='dd-to_read'>To Read</a>
+          <a href="#" class="drop-cat-btn" id='dd-to_eat'>To Eat</a>
+          <a href="#" class="drop-cat-btn" id='dd-misc'>Miscallaneous</a>
         </div>
       </div>
         <div class="checkbox-container">
@@ -64,6 +66,37 @@ $(document).ready(function() {
       </div>
     </article>`;
   };
+
+  // Change Category dropdown button listener
+  $(document).on('click', '.drop-cat-btn', function() {
+    // extracy current itemId
+    const itemId = $(this).closest('article').find('p').attr('id').replace('item', '');
+    const itemCat = $(this).attr('id').replace('dd-', '');
+    console.log("clicked new category");
+    console.log("itemCat = ", itemCat);
+    console.log("itemId = ", itemId);
+    $.ajax({
+      url: 'items/newCategory',
+      type: 'POST',
+      data: { id: itemId, category: itemCat },
+      success: function(res) {
+        const category = res.category;
+        console.log("category: ", category);
+        $(`#${category}-drop`).empty();
+        $.get(`/items/${category}`, function(data) {
+          data.forEach(item => {
+            $(`#${category}-drop`).append(createItemElement(item));
+          });
+        }).fail(function(xhr, status, error) {
+          console.log("Error fetching data:", error);
+        });
+      },
+      error: function(xhr, status, error) {
+        console.log("Error message: ", error)
+      }
+    })
+  })
+
 
   // Complete button listener
   $(document).on('click', '.custom-checkbox', function() {
