@@ -15,6 +15,7 @@ $(document).ready(function() {
       data: serializedItem,
       success: function(result) {
         console.log("Item was posted successfully", result);
+        $('#submitForm')[0].reset();
       },
       error: function(err) {
         console.log("There was an error ",err);
