@@ -8,11 +8,19 @@ article {
   padding: 10px;
   margin-bottom: 10px;
   box-shadow: 5px 5px #1b45436e;
-  height: 5vh;
+  height: 75px;
+}
+
+article p {
+  font-family: 'Caveat', sans-serif;
 }
 
 article div {
   display: flex;
+}
+
+.delete-btn:hover {
+  background-color: rgb(138, 46, 46);
 }
 
 .delete-btn,

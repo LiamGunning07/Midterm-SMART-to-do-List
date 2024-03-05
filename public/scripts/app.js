@@ -39,13 +39,13 @@ $(document).ready(function() {
     });
   })
 
-  createItemElement = function(item) { // Helper Function for Each Item Element
+  createItemElement = function(item) { // Helper Function for Each Item Element ID SHOULD BE PK FROM TABLE, need to implement
     return `
     <article>
-      <p> ${item.title} </p>
+      <p id="item.${item.title}"> ${item.title} </p>
       <div>
-      <button type ="submit" class="delete-btn">Delete</button>
-      <button type ="submit" class="edit-btn">Edit</button>
+      <button type ="button" class="delete-btn">Delete</button>
+      <button type ="button" class="edit-btn">Edit</button>
         <div class="checkbox-container">
           <input type="checkbox" id="myCheckbox" class="custom-checkbox">
           <label for="myCheckbox" class="checkbox-label">Completed</label>
