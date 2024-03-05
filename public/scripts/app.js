@@ -15,40 +15,29 @@ $(document).ready(function() {
       data: serializedItem,
       success: function(result) {
         console.log("Item was posted successfully", result);
+        // clear form
         $('#submitForm')[0].reset();
+        // find correct dropdown, open it, and load table
         let category = result.category;
         if (category !== 'to_watch' && category !== 'to_eat' && category !== 'to_read' && category !== 'to_buy') {
-          console.log("category changed to misc")
           category = 'misc';
         }
+        $(`#${category}-drop`).empty();
         $(`#${category}-drop`).slideDown();
+        $.get(`/items/${category}`, function(data) {
+          data.forEach(item => {
+            $(`#${category}-drop`).append(createItemElement(item));
+          });
+        }).fail(function(xhr, status, error) {
+          console.log("Error fetching data:", error);
+        });
+
       },
       error: function(err) {
         console.log("There was an error ",err);
       }
     });
   })
-
-  // event listeners for dropdowns
-  $("#to_watch-bttn").click(function() {
-    $("#to_watch-drop").slideToggle();
-  });
-
-  $("#to_buy-bttn").click(function() {
-    $("#to_buy-drop").slideToggle();
-  });
-
-  $("#to_read-bttn").click(function() {
-    $("#to_read-drop").slideToggle();
-  });
-
-  $("#to_eat-bttn").click(function() {
-    $("#to_eat-drop").slideToggle();
-  });
-
-  $("#misc-bttn").click(function() {
-    $("#misc-drop").slideToggle();
-  });
 
   createItemElement = function(item) { // Helper Function for Each Item Element
     return `
@@ -69,6 +58,7 @@ $(document).ready(function() {
   $("#to_watch-bttn").click(function() {
     $("#to_watch-drop").empty(); // Clear previous content
     console.log("Clicked!");
+    $("#to_watch-drop").slideToggle();
     $.get('/items/to_watch', function(data) {
       data.forEach(item => {
         $("#to_watch-drop").append(createItemElement(item));
@@ -81,6 +71,7 @@ $(document).ready(function() {
   $("#to_read-bttn").click(function() {
     $("#to_read-drop").empty(); // Clear previous content
     console.log("Clicked!");
+    $("#to_read-drop").slideToggle();
     $.get('/items/to_read', function(data) {
       data.forEach(item => {
         $("#to_read-drop").append(createItemElement(item));
@@ -93,6 +84,7 @@ $(document).ready(function() {
   $("#to_eat-bttn").click(function() {
     $("#to_eat-drop").empty(); // Clear previous content
     console.log("Clicked!");
+    $("#to_eat-drop").slideToggle();
     $.get('/items/to_eat', function(data) {
       data.forEach(item => {
         $("#to_eat-drop").append(createItemElement(item));
@@ -105,6 +97,7 @@ $(document).ready(function() {
   $("#to_buy-bttn").click(function() {
     $("#to_buy-drop").empty(); // Clear previous content
     console.log("Clicked!");
+    $("#to_buy-drop").slideToggle();
     $.get('/items/to_buy', function(data) {
       data.forEach(item => {
         $("#to_buy-drop").append(createItemElement(item));
@@ -118,6 +111,7 @@ $(document).ready(function() {
   $("#misc-bttn").click(function() {
     $("#misc-drop").empty(); // Clear previous content
     console.log("Clicked!");
+    $("#misc-drop").slideToggle();
     $.get('/items/misc', function(data) {
       data.forEach(item => {
         $("#misc-drop").append(createItemElement(item));
