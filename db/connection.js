@@ -25,7 +25,9 @@ const getAllForCategory = function(category) {
 
 const addToDoItem = function(values) {
   let category = values.category;
-  if (category !== 'to_watch' || 'to_eat' || 'to_read' || 'to_buy') {
+  console.log(category);
+  if (category !== 'to_watch' && category !== 'to_eat' && category !== 'to_read' && category !== 'to_buy') {
+    console.log("category changed to misc")
     category = 'misc';
   }
   return client
