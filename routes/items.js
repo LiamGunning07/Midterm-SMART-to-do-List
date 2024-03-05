@@ -33,6 +33,16 @@ router.post('/add', async (req, res) => {
     });
 });
 
+router.post('/completed', async (req, res) => {
+  console.log("In post route");
+  const id = req.body.id;
+  try {
+    await db.completeItem(id);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+})
+
 router.post('/delete', async (req, res) => {
   const id = req.body.id;
   console.log(id);

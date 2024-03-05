@@ -13,7 +13,7 @@ client.connect();
 
 const getAllForCategory = function(category) {
   return client
-    .query(`SELECT * FROM to_do_items WHERE category = $1`, [category])
+    .query(`SELECT * FROM to_do_items WHERE category = $1 ORDER BY id`, [category])
     .then((result) => {
       return result.rows;
     })
@@ -64,4 +64,15 @@ const deleteItem = function(itemId) {
     })
 }
 
-module.exports = { getAllForCategory, addToDoItem, deleteItem, getCategoryForId };
+const completeItem = function (itemId) {
+  return client 
+  .query(`UPDATE to_do_items
+  SET completed = NOT completed
+  WHERE id = $1`, [itemId])
+  .catch((err) => {
+    console.log(err.message);
+    throw err; // Re-throw the error to propagate it
+  })
+};
+
+module.exports = { getAllForCategory, addToDoItem, deleteItem, getCategoryForId, completeItem };

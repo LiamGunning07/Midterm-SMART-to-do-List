@@ -40,6 +40,10 @@ $(document).ready(function() {
   })
 
   createItemElement = function(item) { // Helper Function for Each Item Element
+    let completed;
+    if (item.completed) {
+      completed = 'checked';
+    };
     return `
     <article>
       <p id="item${item.id}"> ${item.title} </p>
@@ -47,12 +51,39 @@ $(document).ready(function() {
       <button type ="button" class="delete-btn">Delete</button>
       <button type ="button" class="edit-btn">Edit</button>
         <div class="checkbox-container">
-          <input type="checkbox" id="myCheckbox" class="custom-checkbox">
+          <input type="checkbox" id="myCheckbox" class="custom-checkbox" ${completed}>
           <label for="myCheckbox" class="checkbox-label">Completed</label>
         </div>
       </div>
     </article>`;
   };
+
+  // Complete button listener
+  $(document).on('click', '.custom-checkbox', function() {
+    // extracy current itemId
+    const itemId = $(this).closest('article').find('p').attr('id').replace('item', '');
+    console.log("clicked checkbox");
+    $.ajax({
+      url: 'items/completed',
+      type: 'POST',
+      data: { id: itemId },
+      success: function(res) {
+        const category = res.category;
+        console.log("category: ", category);
+        $(`#${category}-drop`).empty();
+        $.get(`/items/${category}`, function(data) {
+          data.forEach(item => {
+            $(`#${category}-drop`).append(createItemElement(item));
+          });
+        }).fail(function(xhr, status, error) {
+          console.log("Error fetching data:", error);
+        });
+      },
+      error: function(xhr, status, error) {
+        console.log("Error message: ", error)
+      }
+    })
+  })
 
   // Delete button listener
   $(document).on('click', '.delete-btn', function() {
